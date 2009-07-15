@@ -1,2 +1,4 @@
 *.pyc
 .DS_Store
+asteroid/configs/common/logfile
+asteroid/configs/common/pid

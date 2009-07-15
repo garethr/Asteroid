@@ -1,0 +1,4 @@
+#!/bin/sh
+cat pid|xargs kill -9
+rm pid
+echo "Done; stopped process";

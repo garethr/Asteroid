@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+export PYTHONPATH=../../../:../../apps:../../../ext:$PYTHONPATH
+nohup spawn --factory=spawning.django_factory.config_factory settings --port 8001 -s 1 -t 100 --host localhost >logfile 2>&1 &
+
+# Write the process ID into the file "pid"
+echo $! > pid
+
+echo "Done; running under process ID $!";
+exit
