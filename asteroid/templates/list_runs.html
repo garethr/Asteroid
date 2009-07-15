@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load correct_status %}
+
+{% block title %}Runs{% endblock %}
+
+{% block content %}
+
+<section class="col">
+  <h1>Runs</h1>
+  {% if runs %}
+  <ol class="runs">
+  {% for run in runs %}
+    <li class="{{run.status}}">
+      <a href="{{run.get_absolute_url}}">{{run.command.title}} {{run.status|correct_status}}</a>
+      <span>(<time datetime="{{run.updated_date}}">{{run.updated_date|date:"jS F Y \a\t H:i"}}</time>)</span>
+    </li>
+  {% endfor %}
+  </ol>
+  {% endif %}
+</section>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load correct_status %}
+
+{% block title %}{{run}}{% endblock %}
+
+{% block content %}
+
+<section class="run">
+
+  <nav>
+    <ol>
+      <li><a href="{{run.command.get_absolute_url}}">{{run.command}}</a></li>
+    </ol>
+  </nav>
+
+  <h1 class="{{run.status}}">{{run}}</h1>
+  <p>{{run.command.description}}</p>
+
+  {% if run.output %}
+  <pre>{{run.output}}</pre>
+  {% endif %}
+</section>
+
+{% endblock %}

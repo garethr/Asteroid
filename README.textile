@@ -1,0 +1,87 @@
+Asteroid is a simple web interface for running scripts and recoding the results.
+
+<img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cgwLEgVJbWFnZRj5VQw" alt="Asteroid Dashboard"/>
+
+I built it to solve two main problems:
+
+* It's sometimes useful to have a historical record of a scripts execution, in particular whether it passed or failed and what the output was. Just running a command line script probably doesn't give you that. It's also useful to have a more graphical interface for those members of the team who don't use the command line.
+* When working in a team you often want to run scripts against shared infrastructure, for instance deploying a testing release or running a test suite. Seeing what is running at present helps with that.
+
+h2. Requirements
+
+Asteroid uses the Django Python framework under the hood.
+
+* Django - http://www.djangoproject.com/
+
+You'll also need a database. The default in the shipped settings is to use sqlite but this should work with any database supported by Django.
+
+You'll also need a decent web browser. I've gone and used HTML5 as an experiment and with this being a developer tool I'm hoping to stick with it. It would be easy enough to convert the templates if this is a problem however.
+
+The application has an optional message queue backend which can be enabled in the settings file. This is used to improve the responsiveness of the application as well as allow commands to be executed on a remote machine, rather than on the box Asteroid is running.
+
+* AMQPlib - http://barryp.org/software/py-amqplib/
+* RabbitMQ - http://www.rabbitmq.com/
+
+Other AMQP compliant message queues should work but it's currently only tested with Rabbit.
+
+If you are intending to do any development on Asteroid, or just want to look more closely at the code, I'd recommend installing 
+
+* Clue - http://github.com/garethr/django-clue/tree/master
+* Test Extensions - http://github.com/garethr/django-test-extensions/tree/master
+
+h2. Usage Instructions
+
+You should be able to just download asteroid and run it from wherever you put it, once you setup the database.
+
+<pre>cd asteroid/configs/common
+manage.py syncdb
+manage.py runserver</pre>
+
+This should bring the local web server up on port 8000 so visit http://localhost:8000 and see.
+
+If you're using the message queue backend you'll need to run the listener script in order to get your commands executed. At the moment that means modifying a constant in the listener script to point at a running message queue instance at asteroid/bin/asteroid_listen.py.
+
+<pre>cd asteroid/bin
+./asteroid_listen.py</pre>
+
+Once you're up and running you should be able to add commands via the admin interface at http://localhost:8000/admin/. The username and password should be those you added when creating the database via the syncdb command above.
+
+The development configs include a few additional applications (mentioned above) which I use for testing and debugging. You can run the test suite like so:
+
+<pre>cd asteroid/configs/development
+manage.py test --coverage
+</pre>
+
+h2. Todo
+
+This is an early release that just about _works for me_. I can already see a number of areas I'd like to clean up a little or extend. For instance:
+
+* Other deployment options, including a WSGI file and a spawning startup script.
+* Use a database migration system to make upgrades easier.
+* Make the message queue listener script more robust.
+* Make the command entry more robust, it sometimes takes a bit of fiddling with to get something to run correctly.
+* Formalise running scripts on remote machines, including support for running on multiple machines.
+
+h2. Licence
+
+The MIT License
+ 
+Copyright (c) 2009 Gareth Rushgrove
+ 
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+ 
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+ 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.

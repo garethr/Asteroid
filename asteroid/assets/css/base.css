@@ -1,0 +1,145 @@
+section, header, footer, h, nav, article {display:block;}
+
+body, html {
+    color: #111;
+    font-size: 100%;
+    background: #ECECEC;
+}
+a {
+   text-decoration: none;
+   color: #0000AA;
+}
+a:hover {
+   text-decoration: underline;
+}
+body>header {
+    width: 90%;
+    margin: 15px auto 10px;
+}
+body>header em {
+    font-weight: bold;
+}
+body>header a {
+    color: #000;
+    text-decoration: none;
+}
+body>header a:hover {
+    text-decoration: none;
+}
+body>header {
+    color: #444;
+}
+section>footer {
+    clear: both;
+    font-size: 75%;
+    color: #CCC;
+    padding-top: 20px;
+}
+section>footer a {
+    color: #CCC;
+} 
+section#main {
+    width: 90%;
+    margin: 0 auto;
+    background: #FFF;
+    padding: 15px;
+    position: relative;
+    border-width: 1px 1px 0;
+    border-style: solid;
+    border-color: #ACACAC;
+    border-bottom: 1px solid #CCC
+}
+
+section.col {
+    float: left;
+    width: 50%;
+}
+section.col h1 {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+.runs li {
+    margin-bottom: 10px;
+}
+.runs span {
+    color: #888;
+    font-size: 75%;
+}
+li.succeeded a {
+    color: #00AA00;
+}
+li.failed a {
+    color: #AA0000;
+}
+.commands li {
+    position: relative;
+    margin-bottom: 15px;
+}
+.commands li section {
+    font-size: 80%;
+    color: #666;
+    border: 1px solid #CCC;
+    background: #ECECEC;
+    padding: 10px;
+    margin: 10px 20px 10px 0;
+}
+.commands li h2 a {
+    color: #111;
+}
+.commands li h2 {
+    margin-left: 65px;
+    font-weight: bold;
+}
+.commands li p.status {
+    margin-top: 10px;
+    font-size: 80%;
+    color: #666;
+}
+.commands li a.button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid #ACACAC;
+    background: #CCC;
+    -webkit-border-radius: 8px;
+    color: #FFF;
+    padding: 1px 15px;
+    font-size: 75%;
+    
+}
+.commands li a.button:hover {
+    background: #ACACAC;
+    text-decoration: none;
+}
+section.run p {
+    margin-bottom: 15px;
+}
+section.run h1 {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+section.run h1.succeeded {
+    color: #00AA00;
+}
+section.run h1.in_progress {
+    color: #0000AA;
+}
+
+section.run h1.failed {
+    color: #AA0000;
+}
+section.run nav {
+    margin-bottom: 15px;
+    font-size: 75%;
+}
+section.run nav a {
+     color: #CCC;   
+}
+
+pre {
+    background: #111;
+    color: #00CC00;
+    padding: 10px;
+    line-height: 1.5;
+    margin-top: 15px;
+}

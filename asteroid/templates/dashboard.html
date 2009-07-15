@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% load correct_status %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<section class="col">
+  {% if commands %}
+  <h1>Available Commands</h1>
+  <ul class="commands">
+  {% for command in commands %}
+    <li>
+      <h2><a href="{{command.get_absolute_url}}">{{command}}</a></h2>
+      <a class="button" href="/commands/{{command.slug}}/run">Run</a>
+      <p class="status"><strong>Status:</strong> {{command.status|correct_status}}</p>
+      {% if command.description %}
+      <section>
+        {{command.description}}
+      </section>
+      {% endif %}
+    </li>
+  {% endfor %}
+  </ul>
+  {% endif %}
+</section>
+
+
+<section class="col">
+  <h1>Current Runs</h1>
+  {% if runs %}
+  <ol class="runs">
+  {% for run in runs %}
+    <li class="{{run.status}}">
+      <a href="{{run.get_absolute_url}}">{{run.command.title}} {{run.status|correct_status}}</a>
+      <span>(<time datetime="{{run.updated_date}}">{{run.updated_date|date:"jS F Y \a\t H:i"}}</time>)</span>
+    </li>
+  {% endfor %}
+  </ol>
+  {% endif %}
+</section>
+
+{% endblock %}

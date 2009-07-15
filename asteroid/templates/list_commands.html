@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load correct_status %}
+
+{% block title %}Commands{% endblock %}
+
+{% block content %}
+
+<section class="col">
+  {% if commands %}
+  <h1>Commands</h1>
+  <ul class="commands">
+  {% for command in commands %}
+    <li>
+      <h2><a href="{{command.get_absolute_url}}">{{command}}</a></h2>
+      <a class="button" href="/commands/{{command.slug}}/run">Run</a>
+      {% if command.description %}
+      <section>
+        {{command.description}}
+      </section>
+      {% endif %}
+    </li>
+  {% endfor %}
+  </ul>
+  {% endif %}
+</section>
+
+
+{% endblock %}

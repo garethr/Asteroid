@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+  <meta charset=utf-8>
+  <title>Asteroid | {% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="/assets/css/reset.css" type="text/css" charset="utf-8"/>
+  <link rel="stylesheet" href="/assets/css/base.css" type="text/css" charset="utf-8"/>
+</head>
+<body>
+  <header><h1><a href="/"><em>Asteroid</em> Run Builds</a></h1></header>
+  <section id="main">
+    {% block content %}{% endblock %}
+    <footer>
+      <p>Asteroid runs your scripts and keeps track of the results. It's by <a href="http://morethanseven.net">Gareth Rushgrove</a>.</p>
+    </footer>
+  </section>
+</body>
+</html>
