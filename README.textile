@@ -1,6 +1,6 @@
 h2. About Asteroid
 
-Asteroid is a simple web interface for running scripts and recoding the results. It's like a much simpler and more general purpose version of something like Cruise Control.
+Asteroid is a simple web interface for running scripts and recording the results. It's like a much simpler and more general purpose version of something like Cruise Control.
 
 <img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cgwLEgVJbWFnZRj5VQw" alt="Asteroid Dashboard"/>
 
