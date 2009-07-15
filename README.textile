@@ -1,4 +1,6 @@
-Asteroid is a simple web interface for running scripts and recoding the results.
+h2. About Asteroid
+
+Asteroid is a simple web interface for running scripts and recoding the results. It's like a much simpler and more general purpose version of something like Cruise Control.
 
 <img src="http://image-host.appspot.com/i/img?id=agppbWFnZS1ob3N0cgwLEgVJbWFnZRj5VQw" alt="Asteroid Dashboard"/>
 
@@ -11,7 +13,7 @@ h2. Requirements
 
 Asteroid uses the Django Python framework under the hood.
 
-* Django - http://www.djangoproject.com/
+* Django - "http://www.djangoproject.com/":http://www.djangoproject.com/
 
 You'll also need a database. The default in the shipped settings is to use sqlite but this should work with any database supported by Django.
 
@@ -19,15 +21,15 @@ You'll also need a decent web browser. I've gone and used HTML5 as an experiment
 
 The application has an optional message queue backend which can be enabled in the settings file. This is used to improve the responsiveness of the application as well as allow commands to be executed on a remote machine, rather than on the box Asteroid is running.
 
-* AMQPlib - http://barryp.org/software/py-amqplib/
-* RabbitMQ - http://www.rabbitmq.com/
+* AMQPlib - "http://barryp.org/software/py-amqplib/":http://barryp.org/software/py-amqplib/
+* RabbitMQ - "http://www.rabbitmq.com/":http://www.rabbitmq.com/
 
 Other AMQP compliant message queues should work but it's currently only tested with Rabbit.
 
 If you are intending to do any development on Asteroid, or just want to look more closely at the code, I'd recommend installing 
 
-* Clue - http://github.com/garethr/django-clue/tree/master
-* Test Extensions - http://github.com/garethr/django-test-extensions/tree/master
+* Clue - "http://github.com/garethr/django-clue/tree/master":http://github.com/garethr/django-clue/tree/master
+* Test Extensions - "http://github.com/garethr/django-test-extensions/tree/master":http://github.com/garethr/django-test-extensions/tree/master
 
 h2. Usage Instructions
 
@@ -61,6 +63,7 @@ This is an early release that just about _works for me_. I can already see a num
 * Make the message queue listener script more robust.
 * Make the command entry more robust, it sometimes takes a bit of fiddling with to get something to run correctly.
 * Formalise running scripts on remote machines, including support for running on multiple machines.
+* Paging for long lists of commands or runs.
 
 h2. Licence
 
