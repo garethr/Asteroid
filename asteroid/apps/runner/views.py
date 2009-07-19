@@ -46,19 +46,17 @@ def run_web_hook(request, command, run):
 
                 # sample json input
                 # json = """{
-                #     "status": "failed",
+                #     "status": 0,
                 #     "output": "bob2"
                 # }"""
                 
                 # get json document from post body in request.POST
-                # we need to do this loop as Django encodes it as a QueryDict
-                for body in request.POST:
-                    json = body
+                json = request.raw_post_data
 
                 # not try parse the JSON
                 try:
                     obj = simplejson.loads(json)
-                except ValueError:
+                except ValueError, e:
                     # invalid input
                     return HttpResponseBadRequest()
 

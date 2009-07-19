@@ -17,14 +17,25 @@ from amqplib import client_0_8 as amqp
 
 # devine the location of your message queue
 QUEUE_ADDRESS = '172.16.142.128'
+DEBUG = True
 
 def recv_callback(msg):
     "Callback function each time a message is recieved"
     # get the JSON document from the message body
+    
+    if DEBUG:
+        print "recieved message"
+    
     obj = simplejson.loads(msg.body)
+
+    if DEBUG:
+        print "running %s" % obj['command']
 
     # run the specified command
     code, output = commands.getstatusoutput(obj['command'])
+
+    if DEBUG:
+        print "command returned with %s" % code
 
     # send post request to obj['webhook']
     # containing the following data
@@ -41,6 +52,9 @@ def recv_callback(msg):
         "POST", body=json,
         headers={'content-type':'application/json'}
     )
+
+    if DEBUG:
+        print "finished processing message"
 
 def run(host, queue, exchange, key):
     "Long running message queue processor"

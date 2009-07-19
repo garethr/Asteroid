@@ -93,7 +93,7 @@ QUEUE_COMMANDS = True
 QUEUE_ADDRESS = '172.16.142.128'
 
 # used for the callback
-DOMAIN = "http://localhost:8000"
+DOMAIN = "http://localhost:8001"
 
 # ignore django code when we calculate coverage
 EXCLUDE_FROM_COVERAGE = ['django']
