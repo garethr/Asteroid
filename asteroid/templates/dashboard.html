@@ -14,11 +14,6 @@
       <h2><a href="{{command.get_absolute_url}}">{{command}}</a></h2>
       <a class="button" href="/commands/{{command.slug}}/run">Run</a>
       <p class="status"><strong>Status:</strong> {{command.status|correct_status}}</p>
-      {% if command.description %}
-      <section>
-        {{command.description}}
-      </section>
-      {% endif %}
     </li>
   {% endfor %}
   </ul>

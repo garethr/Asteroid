@@ -69,7 +69,7 @@ This is an early release that just about _works for me_. I can already see a num
 * Make the message queue listener script more robust.
 * Make the command entry more robust, it sometimes takes a bit of fiddling with to get something to run correctly.
 * Formalise running scripts on remote machines, including support for running on multiple machines.
-* Paging for long lists of commands or runs.
+* -Paging for long lists of commands or runs.-
 
 h2. Licence
 

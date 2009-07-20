@@ -10,7 +10,7 @@
   <h1>Runs</h1>
   {% if runs %}
   <ol class="runs">
-  {% for run in runs %}
+  {% for run in runs.object_list %}
     <li class="{{run.status}}">
       <a href="{{run.get_absolute_url}}">{{run.command.title}} {{run.status|correct_status}}</a>
       <span>(<time datetime="{{run.updated_date}}">{{run.updated_date|date:"jS F Y \a\t H:i"}}</time>)</span>
@@ -18,6 +18,25 @@
   {% endfor %}
   </ol>
   {% endif %}
+  
+  {% if runs.has_other_pages %}
+  <div class="pagination">
+      <span class="step-links">
+          {% if runs.has_previous %}
+              <a href="?page={{ runs.previous_page_number }}">previous</a>
+          {% endif %}
+
+          <span class="current">
+              Page {{ runs.number }} of {{ runs.paginator.num_pages }}
+          </span>
+
+          {% if runs.has_next %}
+              <a href="?page={{ runs.next_page_number }}">next</a>
+          {% endif %}
+      </span>
+  </div>
+  {% endif %}
+  
 </section>
 
 {% endblock %}

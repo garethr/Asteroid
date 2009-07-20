@@ -143,3 +143,16 @@ pre {
     line-height: 1.5;
     margin-top: 15px;
 }
+
+.pagination {
+    color: #888;
+    font-size: 80%;
+    margin-top: 20px;
+    border-top: 1px solid #ECECEC;
+    padding-top: 5px;
+}
+
+.pagination a {
+    color: #888;
+    border-bottom: 1px solid #ECECEC;
+}

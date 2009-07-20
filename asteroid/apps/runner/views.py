@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404, get_list_or_404
 from django.http import Http404, HttpResponseNotFound, HttpResponseRedirect, HttpResponse, HttpResponseNotAllowed, HttpResponseBadRequest
 from django.conf import settings
 from django.utils import simplejson
+from django.core.paginator import Paginator, InvalidPage, EmptyPage
 
 from runner.models import Command, Run
 
@@ -102,8 +103,23 @@ def list_commands(request):
 def list_runs(request):
     "list all the runs that have been made so far"
     runs = get_list_or_404(Run)
+    
+    paginator = Paginator(runs, 10) # Show 10 runs per page
+
+    # Make sure page request is an int. If not, deliver first page.
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+
+    # If page request (9999) is out of range, deliver last page of results.
+    try:
+        run_list = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        run_list = paginator.page(paginator.num_pages)
+    
     context = {
-        'runs': runs,
+        'runs': run_list,
     }
     return render_to_response('list_runs.html', context,
         context_instance=RequestContext(request))
@@ -130,12 +146,26 @@ def show_command(request, command):
     # throw a 404 if we don't find anything
     existing_command = get_object_or_404(Command, slug__iexact=command)
     
-    # get the last few runs as well
-    runs = Run.objects.filter(command=existing_command)[:10]
+    # get all runs
+    runs = Run.objects.filter(command=existing_command)
+    
+    paginator = Paginator(runs, 10) # Show 10 runs per page
+
+    # Make sure page request is an int. If not, deliver first page.
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+
+    # If page request (9999) is out of range, deliver last page of results.
+    try:
+        run_list = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        run_list = paginator.page(paginator.num_pages)
     
     context = {
         'command': existing_command,
-        'runs': runs,
+        'runs': run_list,
     }
     return render_to_response('show_command.html', context,
         context_instance=RequestContext(request))
@@ -144,7 +174,7 @@ def dashboard(request):
     "make a nice homepage dashboard with the commands and latest runs"
 
     commands = Command.objects.filter()
-    runs = Run.objects.filter()[:10]
+    runs = Run.objects.filter()[:20]
 
     context = {
         'commands': commands,
